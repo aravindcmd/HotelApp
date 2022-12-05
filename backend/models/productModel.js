@@ -64,6 +64,11 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    roomType: {
+      type: String,
+      required: true,
+      default: "Single Room"
+    }
   },
   {
     timestamps: true,

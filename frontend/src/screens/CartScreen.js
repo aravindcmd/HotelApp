@@ -8,7 +8,18 @@ import { addToCart, removeFromCart } from '../actions/cartActions'
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id
 
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1
+  // const qty = location.search ? Number(location.search.split('=')[1]) : 1
+  const qty = location.search.match(/qty=([^&]*)?/i)[1]
+  var date = location.search.match(/date=([^&]*)?/i)[1]
+  date = date.replace(/%/g, ' ')
+  console.log("qtyLog", qty)
+  console.log("dateLog", date.replace(/%/g, ' '))
+
+  // var date = location.search.match(/date=([^&]*)/i)[1]
+  // console.log(date)
+  // date = date.toString()
+  // const date = location.search ? Date(location.search.split('=')[1]) : new Date()
+  // console.log("cartDates", date)
 
   const dispatch = useDispatch()
 
@@ -17,9 +28,9 @@ const CartScreen = ({ match, location, history }) => {
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty))
+      dispatch(addToCart(productId, qty, date))
     }
-  }, [dispatch, productId, qty])
+  }, [dispatch, productId, qty, date])
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
@@ -32,7 +43,7 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
+        <h1>Details</h1>
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty <Link to='/'>Go Back</Link>
@@ -49,6 +60,9 @@ const CartScreen = ({ match, location, history }) => {
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>${item.price}</Col>
+                  {/* <Col md={2}>{date}</Col> */}
+
+                  <Col md={2}>{item.date}</Col>
                   <Col md={2}>
                     <Form.Control
                       as='select'
@@ -86,8 +100,7 @@ const CartScreen = ({ match, location, history }) => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                items
+                Bill
               </h2>
               $
               {cartItems

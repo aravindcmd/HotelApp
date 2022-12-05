@@ -58,7 +58,7 @@ const ProfileScreen = ({ location, history }) => {
       <Col md={3}>
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}
-        {}
+        { }
         {success && <Message variant='success'>Profile Updated</Message>}
         {loading ? (
           <Loader />
@@ -125,8 +125,8 @@ const ProfileScreen = ({ location, history }) => {
                 <th>ID</th>
                 <th>DATE</th>
                 <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
+                {/* <th>PAID</th>
+                <th>DELIVERED</th> */}
                 <th></th>
               </tr>
             </thead>
@@ -136,7 +136,7 @@ const ProfileScreen = ({ location, history }) => {
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
-                  <td>
+                  {/* <td>
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
                     ) : (
@@ -149,7 +149,7 @@ const ProfileScreen = ({ location, history }) => {
                     ) : (
                       <i className='fas fa-times' style={{ color: 'red' }}></i>
                     )}
-                  </td>
+                  </td> */}
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
                       <Button className='btn-sm' variant='light'>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import 'react-calendar/dist/Calendar.css';
+import { Calendar } from 'react-calendar'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -10,13 +12,18 @@ import {
   listProductDetails,
   createProductReview,
 } from '../actions/productActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
-
+  const [date, setDate] = useState(new Date());
+  const onChange = date => {
+    setDate(date);
+  }
+  console.log("Date Log", date)
   const dispatch = useDispatch()
 
   const productDetails = useSelector((state) => state.productDetails)
@@ -41,10 +48,18 @@ const ProductScreen = ({ history, match }) => {
       dispatch(listProductDetails(match.params.id))
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
     }
+    if (date) {
+      // dispatch(addToCart(product._id, date))
+    }
   }, [dispatch, match, successProductReview])
 
+
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    history.push(`/cart/${match.params.id}?qty=${qty}&date=${date.toDateString()}`)
+    // & date=${ date } 
+    // history.push('/login?redirect=shipping') 
+
+    // history.push(`/cart/${match.params.id}?date=${date}`)
   }
 
   const submitHandler = (e) => {
@@ -110,7 +125,12 @@ const ProductScreen = ({ history, match }) => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
+                  <ListGroup.Item>
 
+
+                    <Calendar onChange={onChange} value={date} />
+
+                  </ListGroup.Item>
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
@@ -141,12 +161,15 @@ const ProductScreen = ({ history, match }) => {
                       type='button'
                       disabled={product.countInStock === 0}
                     >
-                      Add To Cart
+                      Book Room
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
             </Col>
+          </Row>
+          <Row>
+            {/* <Calendar onChange={onChange} value={date} /> */}
           </Row>
           <Row>
             <Col md={6}>

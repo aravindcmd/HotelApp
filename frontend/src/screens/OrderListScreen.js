@@ -25,7 +25,7 @@ const OrderListScreen = ({ history }) => {
 
   return (
     <>
-      <h1>Orders</h1>
+      <h1>Booking</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -38,8 +38,8 @@ const OrderListScreen = ({ history }) => {
               <th>USER</th>
               <th>DATE</th>
               <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
+              {/* <th>PAID</th>
+              <th>DELIVERED</th> */}
               <th></th>
             </tr>
           </thead>
@@ -50,20 +50,20 @@ const OrderListScreen = ({ history }) => {
                 <td>{order.user && order.user.name}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>${order.totalPrice}</td>
-                <td>
+                {/* <td>
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}
-                </td>
-                <td>
+                </td> */}
+                {/* <td>
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}
-                </td>
+                </td> */}
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
                     <Button variant='light' className='btn-sm'>

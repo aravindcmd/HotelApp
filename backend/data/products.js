@@ -9,6 +9,7 @@ const products = [
     countInStock: 3,
     rating: 5,
     numReviews: 1,
+    roomType: "single"
   },
   {
     name: 'Happy Hotels',
@@ -20,6 +21,7 @@ const products = [
     countInStock: 30,
     rating: 2,
     numReviews: 1,
+    roomType: "single"
   },
   {
     name: 'Country Club Lounge',
@@ -31,6 +33,7 @@ const products = [
     countInStock: 3,
     rating: 4,
     numReviews: 1,
+    roomType: "single"
   },
   {
     name: 'Mercedes Club Lounge',
@@ -42,6 +45,7 @@ const products = [
     countInStock: 3,
     rating: 4,
     numReviews: 1,
+    roomType: "single"
   },
   {
     name: 'Audi Club Lounge',
@@ -53,6 +57,7 @@ const products = [
     countInStock: 3,
     rating: 4,
     numReviews: 1,
+    roomType: "single"
   },
   {
     name: 'Ferrari Club Lounge',
@@ -64,6 +69,7 @@ const products = [
     countInStock: 3,
     rating: 4,
     numReviews: 1,
+    roomType: "single"
   }
   // {
   //   name: 'iPhone 11 Pro 256GB Memory',

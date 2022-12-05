@@ -18,6 +18,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [brand, setBrand] = useState('')
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
+  const [roomType, setRoomType] = useState('')
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
 
@@ -47,6 +48,7 @@ const ProductEditScreen = ({ match, history }) => {
         setBrand(product.brand)
         setCategory(product.category)
         setCountInStock(product.countInStock)
+        setRoomType(product.roomType)
         setDescription(product.description)
       }
     }
@@ -87,6 +89,7 @@ const ProductEditScreen = ({ match, history }) => {
         category,
         description,
         countInStock,
+        roomType,
       })
     )
   }
@@ -154,12 +157,21 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId='countInStock'>
-              <Form.Label>Count In Stock</Form.Label>
+              <Form.Label>Nights allowed</Form.Label>
               <Form.Control
                 type='number'
                 placeholder='Enter countInStock'
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId='roomType'>
+              <Form.Label>Room Type</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter the type of room'
+                value={roomType}
+                onChange={(e) => setRoomType(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

@@ -96,7 +96,7 @@ const OrderScreen = ({ match, history }) => {
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h2>Customer Deatils</h2>
               <p>
                 <strong>Name: </strong> {order.user.name}
               </p>
@@ -115,7 +115,7 @@ const OrderScreen = ({ match, history }) => {
                   Delivered on {order.deliveredAt}
                 </Message>
               ) : (
-                <Message variant='danger'>Not Delivered</Message>
+                <Message variant='success'>Room successfully booked</Message>
               )}
             </ListGroup.Item>
 
@@ -128,7 +128,7 @@ const OrderScreen = ({ match, history }) => {
               {order.isPaid ? (
                 <Message variant='success'>Paid on {order.paidAt}</Message>
               ) : (
-                <Message variant='danger'>Not Paid</Message>
+                <Message variant='success'></Message>
               )}
             </ListGroup.Item>
 
@@ -157,6 +157,7 @@ const OrderScreen = ({ match, history }) => {
                         <Col md={4}>
                           {item.qty} x ${item.price} = ${item.qty * item.price}
                         </Col>
+                        {item.date}
                       </Row>
                     </ListGroup.Item>
                   ))}
@@ -177,12 +178,12 @@ const OrderScreen = ({ match, history }) => {
                   <Col>${order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              {/* <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
                   <Col>${order.shippingPrice}</Col>
                 </Row>
-              </ListGroup.Item>
+              </ListGroup.Item> */}
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
@@ -195,7 +196,7 @@ const OrderScreen = ({ match, history }) => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {/* {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (
@@ -207,8 +208,8 @@ const OrderScreen = ({ match, history }) => {
                     />
                   )}
                 </ListGroup.Item>
-              )}
-              {loadingDeliver && <Loader />}
+              )} */}
+              {/* {loadingDeliver && <Loader />}
               {userInfo &&
                 userInfo.isAdmin &&
                 order.isPaid &&
@@ -222,7 +223,7 @@ const OrderScreen = ({ match, history }) => {
                       Mark As Delivered
                     </Button>
                   </ListGroup.Item>
-                )}
+                )} */}
             </ListGroup>
           </Card>
         </Col>
